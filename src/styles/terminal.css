@@ -1,0 +1,373 @@
+/**
+ * src/styles/terminal.css
+ * 极客终端布局、CRT 冰霜扫描线、荧光泛晕与自适应方块光标动画
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* 微弱的 CRT 冰霜扫描线与暗角晕影 (伪元素实现) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    var(--scanline-color) 2px,
+    var(--scanline-color) 4px
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+  background: var(--vignette-color);
+}
+
+/* 终端主容器 */
+#terminal {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* 顶部极客状态栏 */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-header);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  user-select: none;
+}
+
+.terminal-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.85;
+}
+
+.btn-close {
+  background-color: #ff5f56;
+  box-shadow: 0 0 6px rgba(255, 95, 86, 0.5);
+}
+
+.btn-minimize {
+  background-color: #ffbd2e;
+  box-shadow: 0 0 6px rgba(255, 189, 46, 0.5);
+}
+
+.btn-maximize {
+  background-color: #27c93f;
+  box-shadow: 0 0 6px rgba(39, 201, 63, 0.5);
+}
+
+.terminal-title {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-shadow: var(--text-glow);
+}
+
+.terminal-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  padding: 1px 8px;
+  border-radius: 999px;
+  text-shadow: var(--text-glow);
+}
+
+/* 终端交互视口 */
+.terminal-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 10px 10px;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.65),
+    inset 0 0 24px rgba(86, 200, 255, 0.04);
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: text;
+  text-shadow: var(--text-glow);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.terminal-viewport::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-viewport::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 3px;
+}
+
+/* 输出流区域 */
+.terminal-output {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  word-break: break-word;
+}
+
+.output-block {
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.history-cmd-line {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-top: 4px;
+}
+
+.terminal-prompt {
+  color: var(--accent-color);
+  font-weight: 700;
+  white-space: pre;
+  user-select: none;
+  text-shadow: var(--text-glow);
+}
+
+.terminal-prompt .prompt-user {
+  color: var(--accent-color);
+}
+
+.terminal-prompt .prompt-at {
+  color: var(--text-muted);
+}
+
+.terminal-prompt .prompt-host {
+  color: var(--secondary-color);
+}
+
+.terminal-prompt .prompt-path {
+  color: var(--warn-color);
+}
+
+.terminal-prompt .prompt-dollar {
+  color: var(--accent-color);
+}
+
+/* 当前输入行与自适应闪烁方块光标 */
+.terminal-input-line {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-top: 6px;
+  position: relative;
+  min-height: 1.6em;
+}
+
+.input-mirror-wrapper {
+  display: inline;
+}
+
+.input-text {
+  color: var(--text-color);
+  text-shadow: var(--text-glow);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  color: var(--cursor-color);
+  text-shadow: var(--strong-glow);
+  font-weight: 700;
+  vertical-align: baseline;
+  animation: cursor-blink 1.05s steps(2, start) infinite;
+}
+
+.terminal-input-line.is-typing .terminal-cursor {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.12;
+  }
+}
+
+/* 隐藏的真实 input 元素，用于捕获键盘输入与中文/多语言 IME */
+.terminal-hidden-input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+}
+
+/* Banner 与 ASCII 艺术排版 */
+.ascii-banner {
+  color: var(--accent-color);
+  font-weight: 700;
+  line-height: 1.22;
+  white-space: pre;
+  overflow-x: auto;
+  text-shadow: var(--strong-glow);
+  margin-bottom: 6px;
+}
+
+/* 链接样式 */
+a.term-link {
+  color: var(--secondary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+a.term-link:hover {
+  color: var(--warn-color);
+  text-shadow: 0 0 8px var(--warn-color);
+}
+
+/* ls 目录与文件列表 */
+.ls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.ls-dir {
+  color: var(--secondary-color);
+  font-weight: 700;
+  text-shadow: var(--strong-glow);
+}
+
+.ls-file {
+  color: var(--text-color);
+}
+
+.ls-url {
+  color: var(--accent-color);
+}
+
+.ls-md {
+  color: var(--warn-color);
+}
+
+/* Fastfetch 系统信息列表样式 */
+.fastfetch-info {
+  display: flex;
+  flex-direction: column;
+  white-space: pre-wrap;
+  line-height: 1.48;
+  margin: 6px 0;
+}
+
+.fastfetch-key {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.fastfetch-palette {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.palette-swatch {
+  display: inline-block;
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  html,
+  body {
+    font-size: 13.5px;
+  }
+
+  #terminal {
+    padding: 0;
+  }
+
+  .terminal-header {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .terminal-viewport {
+    border-radius: 0;
+    border: none;
+    padding: 14px;
+  }
+
+  .ascii-banner {
+    font-size: 11px;
+  }
+}

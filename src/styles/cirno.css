@@ -1,0 +1,132 @@
+/**
+ * src/styles/cirno.css
+ * 东方 Project 琪露诺 (Cirno / ⑨) 冰霜蓝调主题与多主题色彩变量体系
+ */
+
+:root,
+[data-theme="cirno"] {
+  /* 核心色彩体系 */
+  --bg-color: #090d16;
+  --bg-elevated: rgba(13, 21, 36, 0.88);
+  --bg-header: #0d1424;
+  --border-color: rgba(86, 200, 255, 0.22);
+
+  --text-color: #e2f1f8;
+  --text-muted: #7b9bb2;
+  --accent-color: #56c8ff;
+  --secondary-color: #7bf0ff;
+  --warn-color: #ffaa44;
+  --error-color: #ff5252;
+  --success-color: #69f0ae;
+
+  /* 光标与发光特效 */
+  --cursor-color: #56c8ff;
+  --cursor-text-color: #090d16;
+  --text-glow: 0 0 6px rgba(86, 200, 255, 0.4);
+  --strong-glow: 0 0 10px rgba(123, 240, 255, 0.65);
+
+  /* CRT 扫描线与环境冰霜氛围 */
+  --scanline-color: rgba(86, 200, 255, 0.035);
+  --vignette-color: radial-gradient(
+    circle at 50% 50%,
+    rgba(86, 200, 255, 0.05) 0%,
+    rgba(9, 13, 22, 0.45) 75%,
+    rgba(5, 8, 14, 0.85) 100%
+  );
+  --selection-bg: rgba(86, 200, 255, 0.3);
+  --selection-text: #ffffff;
+
+  /* 字体栈 */
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Matrix 黑客帝国磷光绿主题 */
+[data-theme="matrix"] {
+  --bg-color: #050b06;
+  --bg-elevated: rgba(8, 20, 10, 0.9);
+  --bg-header: #09160b;
+  --border-color: rgba(0, 255, 102, 0.25);
+
+  --text-color: #d0f8d6;
+  --text-muted: #4e9a5d;
+  --accent-color: #00ff66;
+  --secondary-color: #66ffaa;
+  --warn-color: #d4ff33;
+  --error-color: #ff4455;
+  --success-color: #00ff66;
+
+  --cursor-color: #00ff66;
+  --cursor-text-color: #050b06;
+  --text-glow: 0 0 6px rgba(0, 255, 102, 0.45);
+  --strong-glow: 0 0 10px rgba(0, 255, 102, 0.7);
+
+  --scanline-color: rgba(0, 255, 102, 0.04);
+  --vignette-color: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 255, 102, 0.04) 0%,
+    rgba(5, 11, 6, 0.5) 75%,
+    rgba(2, 6, 3, 0.9) 100%
+  );
+  --selection-bg: rgba(0, 255, 102, 0.3);
+  --selection-text: #ffffff;
+}
+
+/* Amber 复古琥珀显像管主题 */
+[data-theme="amber"] {
+  --bg-color: #120c04;
+  --bg-elevated: rgba(24, 16, 5, 0.9);
+  --bg-header: #1c1206;
+  --border-color: rgba(255, 176, 0, 0.25);
+
+  --text-color: #ffe8b3;
+  --text-muted: #a67c2e;
+  --accent-color: #ffb000;
+  --secondary-color: #ffd066;
+  --warn-color: #ff7733;
+  --error-color: #ff4444;
+  --success-color: #ffd066;
+
+  --cursor-color: #ffb000;
+  --cursor-text-color: #120c04;
+  --text-glow: 0 0 6px rgba(255, 176, 0, 0.45);
+  --strong-glow: 0 0 10px rgba(255, 208, 102, 0.7);
+
+  --scanline-color: rgba(255, 176, 0, 0.04);
+  --vignette-color: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 176, 0, 0.05) 0%,
+    rgba(18, 12, 4, 0.5) 75%,
+    rgba(10, 6, 2, 0.9) 100%
+  );
+  --selection-bg: rgba(255, 176, 0, 0.32);
+  --selection-text: #ffffff;
+}
+
+/* 语义化色彩工具类 */
+.c-accent {
+  color: var(--accent-color);
+  text-shadow: var(--text-glow);
+}
+
+.c-secondary {
+  color: var(--secondary-color);
+  text-shadow: var(--strong-glow);
+}
+
+.c-warn {
+  color: var(--warn-color);
+  text-shadow: 0 0 6px rgba(255, 170, 68, 0.4);
+}
+
+.c-error {
+  color: var(--error-color);
+  text-shadow: 0 0 6px rgba(255, 82, 82, 0.45);
+}
+
+.c-muted {
+  color: var(--text-muted);
+}
+
+.c-bold {
+  font-weight: 700;
+}

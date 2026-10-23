@@ -1,4 +1,4 @@
-# ❄️ rime-terminal (`rime.moe`)
+# ❄️ cirno9-terminal (`cirno9.moe`)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-56c8ff.svg)](./LICENSE)
 [![Built with Vite](https://img.shields.io/badge/Bundler-Vite-7bf0ff.svg)](https://vitejs.dev/)
@@ -6,7 +6,8 @@
 
 基于 **Vite + 原生 Vanilla JavaScript** 构建的极客终端交互个人主页（Web CLI），无外部大型运行时依赖，完全在浏览器前端模拟运行。采用东方 Project 琪露诺（Cirno / ⑨）冰霜蓝调主题视觉风格。
 
-- **在线站点**：[https://rime.moe](https://rime.moe)
+- **在线站点**：[https://cirno9.moe](https://cirno9.moe)
+- **GitHub**：[https://github.com/cirnomoe](https://github.com/cirnomoe)
 
 ---
 
@@ -35,17 +36,17 @@
 | `clear` | 清空当前终端屏幕输出缓冲区 |
 | `fastfetch` | 显示系统环境概览信息列表 |
 | `theme [cirno\|matrix\|amber]` | 查看或切换终端配色主题 |
-| `curl [url]` | 发起虚拟网络请求（如 `curl rime.moe`） |
+| `curl [url]` | 发起虚拟网络请求（如 `curl cirno9.moe`） |
 
 ---
 
 ## 📂 目录结构
 
 ```text
-rime-terminal/
+cirno9-terminal/
 ├── index.html              # 终端页面骨架与挂载入口
 ├── package.json            # 项目脚本与依赖配置
-├── pnpm-workspace.yaml     # pnpm 构建白名单配置
+├── wrangler.jsonc          # Cloudflare 部署配置文件
 ├── src/
 │   ├── main.js             # 应用初始化引导入口
 │   ├── engine.js           # 终端状态机、按键拦截、Tab 补全与历史栈引擎

@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "cirno@rime.moe - Geek Web CLI Interactive Homepage",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,8 +1,8 @@
 {
-  "name": "rime-terminal",
+  "name": "cirno9-terminal",
   "private": true,
   "version": "1.0.0",
-  "description": "cirno@rime.moe - Geek Web CLI Interactive Homepage",
+  "description": "cirno@cirno9.moe - Geek Web CLI Interactive Homepage",
   "license": "MIT",
   "type": "module",
   "scripts": {

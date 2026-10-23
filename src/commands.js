@@ -155,12 +155,12 @@ export function renderWelcomeBanner() {
     '/ /___   _/ /   / _, _/  / /|  /  / /_/ /      / /___   / /____/ /   ',
     '\\____/  /___/  /_/ |_|  /_/ |_/   \\____/       \\____/  /_____/___/   ',
     '                                                                     ',
-    '        ❄️  R I M E . M O E  ::  Frost Web Terminal  ❄️'
+    '        ❄️  C I R N O 9 . M O E  ::  Frost Web Terminal  ❄️'
   ].join('\n');
 
   return [
     `<div class="ascii-banner">${escapeHtml(bannerArt)}</div>`,
-    `<div>Welcome to <span class="c-secondary c-bold">rime.moe</span></div>`,
+    `<div>Welcome to <span class="c-secondary c-bold">cirno9.moe</span></div>`,
     `<div class="c-muted">Explorer: <span class="c-accent">cirno</span> | Stack: <span class="c-secondary">Arch Linux / Python / Rust 🦀</span> | GitHub: <a class="term-link" href="https://github.com/cirnomoe" target="_blank" rel="noopener noreferrer">github.com/cirnomoe</a></div>`,
     `<div style="margin-top: 4px;">Type <span class="c-warn c-bold">'help'</span> to get started.</div>`
   ].join('');
@@ -174,7 +174,7 @@ export function renderWelcomeBanner() {
 function renderFastfetch(currentTheme = 'cirno') {
   const specs = [
     ['OS', 'Arch Linux x86_64'],
-    ['Host', 'rime.moe'],
+    ['Host', 'cirno9.moe'],
     ['Kernel', 'linux-zen'],
     ['Shell', 'zsh'],
     ['Learning', 'Python, Rust'],
@@ -188,7 +188,7 @@ function renderFastfetch(currentTheme = 'cirno') {
 
   const keyWidth = 10;
   const infoLines = [
-    `<span class="c-accent c-bold">cirno</span><span class="c-muted">@</span><span class="c-secondary c-bold">rime.moe</span>`,
+    `<span class="c-accent c-bold">cirno</span><span class="c-muted">@</span><span class="c-secondary c-bold">cirno9.moe</span>`,
     `<span class="c-muted">------------------------------</span>`,
     ...specs.map(([key, val]) => {
       const paddedKey = escapeHtml(key).padEnd(keyWidth, ' ');
@@ -258,7 +258,7 @@ export function executeCommand(rawInput, context) {
 
       return {
         html: [
-          `<span class="c-accent c-bold">❄️  RIME.MOE SHELL COMMAND REFERENCE</span>`,
+          `<span class="c-accent c-bold">❄️  CIRNO9.MOE SHELL COMMAND REFERENCE</span>`,
           `<span class="c-muted">----------------------------------------------------------------------</span>`,
           ...rows,
           `<span class="c-muted">----------------------------------------------------------------------</span>`,
@@ -459,20 +459,20 @@ export function executeCommand(rawInput, context) {
     case 'curl': {
       if (args.length === 0) {
         return {
-          html: `<span class="c-error">curl: try 'curl rime.moe' for a frozen surprise! ❄️</span>`
+          html: `<span class="c-error">curl: try 'curl cirno9.moe' for a frozen surprise! ❄️</span>`
         };
       }
 
       const rawUrl = args[0].toLowerCase().replace(/^https?:\/\//, '').replace(/\/+$/, '');
 
-      if (rawUrl === 'rime.moe' || rawUrl === 'www.rime.moe') {
+      if (rawUrl === 'cirno9.moe' || rawUrl === 'www.cirno9.moe') {
         const iceArt = [
           '  HTTP 200 OK',
           '  Content-Type: text/frost; charset=utf-8',
           '',
           '      ❄️  *  .  ❄️  .  *  ❄️  .  *  ❄️',
           '    ======================================',
-          '       WELCOME TO RIME.MOE ICE CASTLE!    ',
+          '      WELCOME TO CIRNO9.MOE ICE CASTLE!   ',
           '    ======================================',
           '      ▸ Explorer : Cirno',
           '      ▸ OS       : Arch Linux',
@@ -490,7 +490,7 @@ export function executeCommand(rawInput, context) {
         html: [
           `<span class="c-muted">GET https://${escapeHtml(rawUrl)}</span>`,
           `<span class="c-warn">curl: (9) Frozen route to host '${escapeHtml(args[0])}'.</span>`,
-          `Tip: Try <span class="c-secondary c-bold">curl rime.moe</span> to trigger the easter egg!`
+          `Tip: Try <span class="c-secondary c-bold">curl cirno9.moe</span> to trigger the easter egg!`
         ].join('\n')
       };
     }

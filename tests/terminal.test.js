@@ -65,7 +65,7 @@ test('Commands: ls / cd / cat / theme / curl 行为正确', () => {
   executeCommand('theme matrix', ctx);
   assert.equal(theme, 'matrix');
 
-  assert.match(executeCommand('curl rime.moe', ctx).html, /WELCOME TO RIME\.MOE/);
+  assert.match(executeCommand('curl cirno9.moe', ctx).html, /WELCOME TO CIRNO9\.MOE/);
 });
 
 test('TerminalEngine: Tab 补全、历史记录栈、Ctrl+C 与 Ctrl+L', () => {

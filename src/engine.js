@@ -48,11 +48,11 @@ export class TerminalEngine {
   }
 
   /**
-   * 获取当前 Prompt 字符串，如 "cirno@rime.moe:~$ "
+   * 获取当前 Prompt 字符串，如 "cirno@cirno9.moe:~$ "
    * @returns {string}
    */
   getPromptText() {
-    return `cirno@rime.moe:${this.cwd}$ `;
+    return `cirno@cirno9.moe:${this.cwd}$ `;
   }
 
   /**
@@ -60,7 +60,7 @@ export class TerminalEngine {
    * @returns {string}
    */
   getPromptHtml() {
-    return `<span class="prompt-user">cirno</span><span class="prompt-at">@</span><span class="prompt-host">rime.moe</span><span class="prompt-at">:</span><span class="prompt-path">${escapeHtml(this.cwd)}</span><span class="prompt-dollar">$</span> `;
+    return `<span class="prompt-user">cirno</span><span class="prompt-at">@</span><span class="prompt-host">cirno9.moe</span><span class="prompt-at">:</span><span class="prompt-path">${escapeHtml(this.cwd)}</span><span class="prompt-dollar">$</span> `;
   }
 
   /**
@@ -69,9 +69,9 @@ export class TerminalEngine {
   updatePromptUI() {
     this.promptEl.innerHTML = this.getPromptHtml();
     if (this.titleEl) {
-      this.titleEl.textContent = `cirno@rime.moe: ${this.cwd}`;
+      this.titleEl.textContent = `cirno@cirno9.moe: ${this.cwd}`;
     }
-    document.title = `cirno@rime.moe:${this.cwd}`;
+    document.title = `cirno@cirno9.moe:${this.cwd}`;
   }
 
   /**

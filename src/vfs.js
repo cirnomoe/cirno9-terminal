@@ -41,8 +41,8 @@ export const VFS_TREE = {
           mtime: 'Oct 24 09:06',
           content: [
             '[InternetShortcut]',
-            'Title=Rime.moe',
-            'URL=https://rime.moe'
+            'Title=Cirno9.moe',
+            'URL=https://cirno9.moe'
           ].join('\n')
         }
       }
